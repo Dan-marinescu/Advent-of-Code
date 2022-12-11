@@ -14,7 +14,7 @@ fs.readFile("./input4.txt", 'utf8', (err, data) => {
         elf1Upper = parseInt(elf1Upper)
         elf2Lower = parseInt(elf2Lower)
         elf2Upper = parseInt(elf2Upper)
-        if(overlap(elf1Lower,elf1Upper,elf2Lower,elf2Upper)){
+        if((overlap(elf1Lower,elf1Upper,elf2Lower,elf2Upper))||(between(elf1Lower,elf1Upper,elf2Lower,elf2Upper))||(between(elf2Lower,elf2Upper,elf1Lower,elf1Upper))){
             counter++;
         }
         
@@ -25,4 +25,8 @@ fs.readFile("./input4.txt", 'utf8', (err, data) => {
 
 function overlap(lowerRange1,upperRange1,lowerRange2,upperRange2){
     return (lowerRange1 <= lowerRange2 && upperRange1 >= upperRange2) || (lowerRange2 <= lowerRange1 && upperRange2>= upperRange1)
+}
+
+function between(lowerRange1,upperRange1,lowerRange2,upperRange2){
+    return (lowerRange1<=lowerRange2 && lowerRange2<=upperRange1)||(lowerRange2<=lowerRange1 && lowerRange1<=upperRange2)
 }
